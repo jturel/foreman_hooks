@@ -53,7 +53,7 @@ module ForemanHooks::Util
   def exec_hook_int(stdin_data, *args)
     # Set environment vars available in hook scripts
     # Name of active Foreman user:
-    ENV['FOREMAN_HOOKS_USER'] = User.current.login
+    ENV['FOREMAN_HOOKS_USER'] = User.current&.login
 
     args.map!(&:to_s)
     output, status = if Open3.respond_to? :capture2e
